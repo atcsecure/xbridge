@@ -1,7 +1,5 @@
 (define-module (p2p server)
-  #:use-module (p2p network)
-  #:use-module (p2p query)
-  #:use-module (p2p files))
+  #:use-module (p2p network))
 
 (define (get-requirements cmd)
   (list (get-space-requirements cmd)

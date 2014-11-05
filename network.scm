@@ -11,8 +11,21 @@
     (close soc)
     res))
 
+(define (handle-messages node)
+  (define soc (socket PF_INET SOCK_STREAM 0))
+  (setsockopt s SOL_SOCKET SO_REUSEADDR 1)
+  (bind s AF_INET INADDR_ANY 2904)
+  (listen s 5)
+
+  (let ((client-connection (accept s)))
+    (if client-connection
+        (let ((command (read client-connection)))
+          (cond
+           ((equals? (car command) 'join)
+            (set! (car (cddddr my-node)) ((cadr command) . (car (cddddr my-node))))))))))
+
 (define (make-node id coin-address ip port)
-  (list id coin-address ip port))
+  (list id coin-address ip port '()))
 
 (define my-node '())
 

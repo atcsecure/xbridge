@@ -17,3 +17,4 @@
      ((options-ref opts 'help #f) (display-help))
      ((options-ref opts 'daemonize #f) (run-server opts))
      (default (run-command (option-ref opts '() '()))))))
+\n;; end main
